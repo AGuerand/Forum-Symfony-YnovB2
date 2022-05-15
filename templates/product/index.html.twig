@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="text-center my-3" style="color:#191970">Produits en vente</h1>
+
+	<div class="row" >
+		 {% for product in products %}
+                {% if input == null or input in product.nom %}
+                    <div class="card mb-3" style="width: 18rem;color:#000080;margin:20px;border: 1px solid #191970;">
+                        <h3 class="card-header"  >
+                            {{ product.nom }}</h3>
+                        <img src=" {{ product.image }} " alt="Image du produit">
+                        <p> Autheur : {{ product.getUserID.username }}<p>
+                        <p> Prix : {{ product.prix }} ₽<p>
+                        <p> Catégorie : {{ product.getCategorieId.titre }}
+                        <div class="card-body text-center" >
+                            <div class="btn-group" role="group" aria-label="Basic example" >
+                                <a href="{{ path('app_details', {'id': product.id} ) }}" class="card-link btn btn-primary" >Voir l'article</a>
+                                {% if app.user %}
+                                    <a href=" {{ path('cart_add', {id: product.id}) }} " class="card-link btn btn-primary">Ajouter au panier</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+</div>{% endblock %}

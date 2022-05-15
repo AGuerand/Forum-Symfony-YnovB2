@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello product_formController!{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1>ADD</h1>
+
+
+    {{ form_start(product_form) }}
+        {{ form_row(product_form.nom) }}
+        {{ form_row(product_form.description) }}
+        {{ form_row(product_form.prix) }}
+        {{ form_row(product_form.image) }}
+        {{ form_row(product_form.categorie_id) }}
+        <button type="submit" class="btn">finish</button>
+    {{ form_end(product_form) }}
+{% endblock %}

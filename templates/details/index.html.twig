@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<div class="pour-centrer-detail">
+    <div class="carre-detail">
+        <div class="left">
+            <div>
+                <h5 class="card-title">{{ produit.nom }}</h5>
+                {# <h4 class="card-des"><span>Categorie : </span> {{ produit.categorie.titre }}</h4> #}
+                <h4 class="card-des"><span>Description : </span>{{ produit.description }}</h4>
+                <p class="prixxx">{{ produit.prix }} €</p>
+                {% if app.user %}
+                <a href="{{ path('cart_add', {id: produit.id}) }}" class="ajouter">Ajouter au panier</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="right">
+            <div>
+                <img src="{{ produit.image }}" alt="Image du produit">
+            </div>
+        </div>
+    </div>
+    <div class="comments">
+        <h5 class="card-title">Commentaires</h2>
+            <section id="commentaire">
+                {% for commentaire in produit.commentaires %}
+                    <div class="row">
+                            <a href="\">{{commentaire.UserId.username}}</a>
+                            <p>{{ commentaire.createdAt|date('d/m/Y à H:i:s') }}</p>
+                            <p>{{ commentaire.contenu|raw }}</p>
+                    </div>
+                {% endfor %}
+            </section>
+            {% if app.user %}
+            {{ form_start(formCommentaire) }}
+            {{ form_row(formCommentaire.contenu, {
+                'attr': {
+                    'placeholder': "Commentaire"
+                }
+            }) }}
+            <button type="submit" class="ajouter">New</button>
+                {{ form_end(formCommentaire) }}
+                {% endif %}
+    </div>
+</div>
+{% endblock %}

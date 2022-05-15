@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+<div class="panier-cadre">
+    <div>
+        <div class="pro">
+            <h5 class="card-title">{{ app.user.username }}</h5>
+            <h5 class="card-title">{{ app.user.email }}</h5>
+        </div>
+        {# <table class="table">
+        <tbody>
+            {% for produits in app.user.produits %}
+            <tr>
+                {{ produits.nom }}
+                {{ produits.prix }}
+
+            {% endfor %}
+            </tr>
+        </tbody>
+        </table> #}
+
+    </div>
+</div>
+{% endblock %}
